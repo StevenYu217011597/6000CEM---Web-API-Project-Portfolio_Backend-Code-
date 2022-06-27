@@ -1,0 +1,44 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "dogs": {
+        "id":"/dog",
+        "title":"Dogs",
+        "description":"Dog Shelter",
+        "type":"object",
+        "properties":{
+          "dog_id":{
+            "description":"Dog id",
+            "type":"string"
+          },
+          "dog_name":{
+            "description":"name of the dog",
+            "type":"string"
+          },
+          "dog_desc":{
+            "description":"Description of the dog",
+            "type":"string"
+          },
+          "dog_dob":{
+            "description":"Birthday of the dog",
+            "type":"string"
+          },
+          "dog_status":{
+            "description":"available or unavailable"
+          },
+          "dog_img":{
+            "description":"Image of the dog",
+            "type":"object"
+          }
+        }
+      }
+    },
+    "required":[
+      "dog_id",
+      "dog_name",
+      "dog_desc",
+      "dog_dob",
+      "dog_status",
+      "dog_img"
+    ]
+  }

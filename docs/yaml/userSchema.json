@@ -1,0 +1,38 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "workers": {
+        "id":"/user",
+        "title":"User",
+        "description":"User in the website",
+        "type":"object",
+        "properties":{
+          "name":{
+            "description":"name of the user",
+            "type":"string"
+          },
+          "email":{
+            "description":"Email for employee or user login",
+            "type":"string"
+          },
+          "password":{
+            "description":"Password for employee or user login",
+            "type":"string"
+          },
+          "role":{
+            "description":"Define the employee or normal user",
+            "type":"string"
+          },
+          "favourite":{
+            "description":"favourite dog for user",
+            "type":"array"
+          }
+        }
+      }
+    },
+    "required":[
+      "name",
+      "email",
+      "password"
+    ]
+  }
