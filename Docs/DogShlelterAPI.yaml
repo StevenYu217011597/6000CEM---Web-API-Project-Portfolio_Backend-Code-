@@ -1,0 +1,274 @@
+openapi: 3.0.0
+info:
+  title: The Canine Shelter API
+  description: This is a Canine Shelter API
+  contact:
+    email: 217011597@stu.vtc.edu.hk
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/217011597/CanineShelter_API/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: Employees
+  description: Secured Admin-only calls
+- name: Users
+  description: Operations available to regular developers
+- name: Vistors
+  description: A vistor which is without account
+paths:
+  /api/user/refreshtoken:
+    get:
+      tags:
+      - Employees
+      - Users
+      summary: Create token for login user
+      description: |
+        Create an access token and refresh token for user
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Not logon yet
+        "500":
+          description: Backend Error
+  /api/user/login:
+    post:
+      tags:
+      - Employees
+      - Users
+      summary: Verify User email and password
+      description: |
+        Verify User email and password
+      parameters:
+      - name: email
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "304":
+          description: Login success
+        "400":
+          description: user does not exist / Incorrect password
+        "500":
+          description: Backend Error
+  /api/user/register:
+    post:
+      tags:
+      - Employees
+      - Users
+      summary: Register user or employee account
+      description: |
+        Register as an employee or user account
+      parameters:
+      - name: name
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: email
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: password
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: role
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: email already used / Password length under 6 char / Wrong signup
+            code
+        "500":
+          description: Backend Error
+  /api/user/logout:
+    get:
+      tags:
+      - Employees
+      - Users
+      summary: Logout
+      description: |
+        logout an employee or user account
+      parameters:
+      - name: name
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: email
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: password
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: role
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: email already used / Password length under 6 char / Wrong signup
+            code
+        "500":
+          description: Backend Error
+  /api/user/shelter:
+    patch:
+      tags:
+      - Users
+      summary: Add dog to favourite
+      description: |
+        logout an employee or user account
+      parameters:
+      - name: _id
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success add dog to favourite
+        "400":
+          description: user does not exist
+        "500":
+          description: Backend Error
+  /api/dogs:
+    put:
+      tags:
+      - Employees
+      summary: Update dog details by admin
+      description: |
+        Update dog details
+      parameters:
+      - name: dog_name
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_desc
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_dob
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_status
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_img
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Update dog success
+        "500":
+          description: Backend error
+    delete:
+      tags:
+      - Employees
+      summary: Delete dog items by admin for backend
+      description: |
+        Delete a new dog
+      parameters:
+      - name: dog_id
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_name
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_desc
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_dob
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_status
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: dog_img
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Delete dog success
+        "500":
+          description: Backend error
+components: {}
