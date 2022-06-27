@@ -6,6 +6,8 @@ const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 const {Server} = require('socket.io')
 const path = require('path')
+const static = require('koa-static-router')
+
 
 const app = express()
 //socket.io are start
@@ -34,13 +36,18 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
+
+
 //Router Settings
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/dogRouter'))
+app.use(static({dir:'docs', router:'/doc/'})) 
 
-
-
+//For unit test
+app.get('/unitTest', (_, res) => {
+    res.json({ message: "Test is passed" })
+})
 
 // Connect to MongoDB
 const URI = process.env.MONGO_URL
@@ -58,3 +65,5 @@ const PORT = process.env.PORT || 5000
 http.listen(PORT, () => {
     console.log('Server is running on port', PORT)
 })
+
+
